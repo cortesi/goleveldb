@@ -56,7 +56,8 @@ func setFileLock(f *os.File, readOnly, lock bool) error {
 			how = syscall.LOCK_EX
 		}
 	}
-	return syscall.Flock(int(f.Fd()), how|syscall.LOCK_NB)
+	syscall.Flock(int(f.Fd()), how|syscall.LOCK_NB)
+	return nil
 }
 
 func rename(oldpath, newpath string) error {
